@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)https://www.cs.unm.edu/~angel/BOOK/INTERACTIVE_COMPUTER_GRAPHICS/SEVENTH_EDITION/CODE/CLASS/square.html -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec4 vPosition;
+      attribute vec2 vTexCoord;
+
+      uniform mat4 modelViewMatrix;
+      uniform mat4 projectionMatrix;
+
+      varying vec2 fTexCoord;
+
+      void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+          fTexCoord = vTexCoord;
+      }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+
+      uniform sampler2D texture;
+
+      varying vec2 fTexCoord;
+
+      void main() {
+          gl_FragColor = texture2D(texture, fTexCoord);
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="js/webgl-utils.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/initShaders.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/MV.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/pentagon.js"
+    ></script>
+  </head>
+
+  <body>
+    <canvas id="gl-canvas" width="512" height="512">
+      Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+    <img id = "texImage" src = "images/test.gif" hidden></img>
+    <p>32192086 소프트웨어학과 서민석 23년 2학기 컴퓨터그래픽스 과제 4</p>
+  </body>
+</html>
